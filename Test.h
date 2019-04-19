@@ -15,8 +15,13 @@ public:
 void runAllTests();
 void isEmptyTest();
 
+
+void sizeTest();
+
+void addFrontTest();
 void printMessage(int exepected, int actual,string nameOfTest);
 
+void addBackTest(); 
 private:
 
 
