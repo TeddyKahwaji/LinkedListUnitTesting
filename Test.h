@@ -10,13 +10,15 @@ class Test
 {
 
 public:
-Test(int size);
+
+
+void runAllTests();
 void isEmptyTest();
 
 void printMessage(int exepected, int actual,string nameOfTest);
 
 private:
-int m_size;
+
 
 
 
