@@ -15,6 +15,6 @@ Test.o: Test.h Test.cpp
 	g++ -g -Wall -std=c++11 -c Test.cpp
 
 
-#DON'T delete LinkedList.o!
+#DON'T delete LinkedList.o!f
 clean:
 	rm main.o *.*~ prog

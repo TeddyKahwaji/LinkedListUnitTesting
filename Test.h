@@ -22,6 +22,7 @@ void addFrontTest();
 void printMessage(int exepected, int actual,string nameOfTest);
 
 void addBackTest(); 
+void searchTest(); 
 private:
 
 
