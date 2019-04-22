@@ -96,13 +96,13 @@ void Test::sizeTest()
   cout << endl;
   aList.addFront(3);
 
-    printMessage(1,aList.toVector().size(), "Size after adding front to an empty list", "Likely due to an unfunctional add front method");
+    printMessage(1,aList.toVector().size(), "Size after adding front to an empty list", "Likely due to a nonfunctional add front method");
     cout << endl;
 
 
 
   aList.addFront(3);
-  printMessage(2,aList.toVector().size(), "Size after adding front to a list of size 1", "Likely due to an unfunctional add front method");
+  printMessage(2,aList.toVector().size(), "Size after adding front to a list of size 1", "Likely due to a nonfunctional add front method");
   cout << endl;
   aList.removeFront();
   printMessage(1, aList.toVector().size(),"Size after removing Front from a list of size 2", "Likely due to a broken remove front method");
@@ -117,7 +117,7 @@ void Test::sizeTest()
   cout << endl;
 
   secondList.removeBack();
-  printMessage(1, secondList.toVector().size(),"Size after removing Back from a list of size 2" , "likely because remove back method is unfunctional");
+  printMessage(1, secondList.toVector().size(),"Size after removing Back from a list of size 2" , "likely because remove back method is not functional");
   cout << endl;
 
 
@@ -245,7 +245,7 @@ void Test::searchTest()
   }
   cout << endl;
   printMessage(0,falseyoTruey, "Search Test after searching an empty list (1=true,0=false)", "likely due to the fact the edge case of an empty case was not accounted for");
-  cout << endl; 
+  cout << endl;
   PercentageGiverToFile();
 
 }
