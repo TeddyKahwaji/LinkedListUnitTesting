@@ -4,6 +4,12 @@
 
 
 
+/*
+
+Simply prints a message to terminal whether the test failed or passed and provides a possible diagonstic for test
+Note: The if expected ==11 and actuall == 12 case is simply just used for formatting messages to terminal and not meant as a specific case to catch errors in testing.
+*/
+
 void Test::printMessage(int expected, int actual, string nameOfTest, string diagnostic)
 {
 
@@ -31,59 +37,53 @@ void Test::printMessage(int expected, int actual, string nameOfTest, string diag
     }
 
 }
+/*
+A series of tests to ensure each possibility of isEmpty is analyzed.
+The isEmptyTest will test empty lists, fixed length lists, adding and removing from lists, etc.
+
+*/
 void Test::isEmptyTest()
 {
+    int falseyoTruey =0;
     printMessage(11,12,"EmptyTest Method","Ignore");
     LinkedListOfInts myList;
 
-    if(myList.isEmpty())
+
+    if(myList.isEmpty() && myList.toVector().size()==0)
     {
-
-      printMessage(0,myList.toVector().size(), "isEmptyTest for Empty List", "likely due to not intializing constructor properly");
-      cout << endl;
-
+      falseyoTruey = 1;
     }
-    else
-    {
-        printMessage(0, myList.toVector().size(),"isEmptyTest for Empty List", "likely due to not intializing constructor properly");
-        cout << endl;
-    }
-
+    printMessage(1, falseyoTruey, "isEmptyTest for an empty list", "likely due to not accounting for edge case of an empty list or a nonfunctional constructor" );
+    cout << endl;
+    falseyoTruey =0;
     myList.addFront(4);
     myList.removeFront();
-    if(myList.isEmpty())
+    if(myList.isEmpty() &&myList.toVector().size())
     {
 
-      printMessage(0,myList.toVector().size(), "isEmptyTest After Adding Front and removing", "Likely due to inability to remove front properly");
-      cout << endl;
+    falseyoTruey = 1;
 
     }
-    else
-    {
-        printMessage(0,myList.toVector().size(), "isEmptyTest After Adding Front and removing", "Likely due to inability to remove front properly");
-        cout << endl;
-    }
+
+    printMessage(1, falseyoTruey, "isEmptyTest after adding front and removing front", "likely due to not removing front properly");
+    cout << endl;
 
 
 
-
+    falseyoTruey =0;
     LinkedListOfInts mySecond;
     mySecond.addBack(4);
     mySecond.removeBack();
-    if(mySecond.isEmpty())
+
+    if(mySecond.isEmpty() && mySecond.toVector().size()==0)
     {
 
-      printMessage(0,mySecond.toVector().size(), "isEmptyTest After Adding back and removing", "Likely due to inability to remove back properly");
-      cout << endl;
-
-    }
-    else
-    {
-        printMessage(0,myList.toVector().size(), "isEmptyTest After Adding Back and removing", "Likely due to inability to remove back properly");
-        cout << endl;
+      falseyoTruey =1;
     }
 
 
+    printMessage(1, falseyoTruey, "isEmptyTest after adding back and immediately removing back", "Likely due to inability to remove back properly note that that isEmpty correctly returns true however when checking the vectors size it is still 1.This implies your removeBack is broken");
+    cout << endl;
 
 
 
@@ -92,32 +92,32 @@ void Test::sizeTest()
 {
   printMessage(11,12,"size Method", "ignore");
   LinkedListOfInts aList;
-  printMessage(0,aList.toVector().size(), "Size after calling default constructor(emptyList)", "Likely due to not setting size to 0 in constructor definition");
+  printMessage(aList.toVector().size(),aList.size(), "Size after calling default constructor(emptyList)", "Likely due to not setting size to 0 in constructor definition");
   cout << endl;
   aList.addFront(3);
 
-    printMessage(1,aList.toVector().size(), "Size after adding front to an empty list", "Likely due to a nonfunctional add front method");
+    printMessage(aList.toVector().size(),aList.size(), "Size after adding front to an empty list", "Likely due to a nonfunctional add front method");
     cout << endl;
 
 
 
   aList.addFront(3);
-  printMessage(2,aList.toVector().size(), "Size after adding front to a list of size 1", "Likely due to a nonfunctional add front method");
+  printMessage(aList.toVector().size(), aList.size(),"Size after adding front to a list of size 1", "Likely due to a nonfunctional add front method");
   cout << endl;
   aList.removeFront();
-  printMessage(1, aList.toVector().size(),"Size after removing Front from a list of size 2", "Likely due to a broken remove front method");
+  printMessage(aList.toVector().size(),aList.size(),"Size after removing Front from a list of size 2", "Likely due to a broken remove front method");
   cout << endl;
 
   LinkedListOfInts secondList;
   secondList.addBack(4);
-  printMessage(1, secondList.toVector().size(),"Size after adding back to an empty list", "Likely due to a broken add back method");
+  printMessage( secondList.toVector().size(),secondList.size(),"Size after adding back to an empty list", "Likely due to a broken add back method");
   cout << endl;
   secondList.addBack(5);
-  printMessage(2,secondList.toVector().size(), "Size after adding back twice", "Likely due to broken add back method");
+  printMessage(secondList.toVector().size(),secondList.size(), "Size after adding back twice", "Likely due to broken add back method");
   cout << endl;
 
   secondList.removeBack();
-  printMessage(1, secondList.toVector().size(),"Size after removing Back from a list of size 2" , "likely because remove back method is not functional");
+  printMessage( secondList.toVector().size(),secondList.size(),"Size after removing Back from a list of size 2" , "likely because remove back method is not functional");
   cout << endl;
 
 

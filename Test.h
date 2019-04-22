@@ -20,6 +20,7 @@ void isEmptyTest();
 void sizeTest();
 
 void addFrontTest();
+
 void printMessage(int exepected, int actual,string nameOfTest, string possibleDiagnostic);
 
 void addBackTest();
@@ -29,7 +30,7 @@ void constructorTest();
 
 void PercentageGiver();
 private:
-int m_totalTests = 24; 
+int m_totalTests = 24;
 int m_correctTests =0;
 ofstream outFile;
 
