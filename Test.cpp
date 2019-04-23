@@ -32,6 +32,8 @@ void Test::printMessage(int expected, int actual, string nameOfTest, string diag
       cout << "Expected: " << expected << endl;
       cout << "Actual: " << actual << endl;
       outFile << "Error for Test: " << nameOfTest << endl;
+      outFile << "Expected: " << expected << endl;
+      outFile << "Actual: " << actual << endl;
       outFile << "Reasoning: " << diagnostic << endl << endl;
 
     }
@@ -138,7 +140,7 @@ void Test::addFrontTest()
 
   T.addFront(randomValue);
   int previousValue = randomValue;
-  printMessage( randomValue,T.toVector()[0], "Value at the front of the list after using add Front with Empty List", "likely because add front is not maintaining the positioning of list");
+  printMessage( randomValue,T.toVector()[0], "Test for the value at the front of the list after using add Front with Empty List", "likely because add front is not maintaining the positioning of list");
   cout << endl;
   //randomize again
   for (int i =0; i<=10; i++)
@@ -146,10 +148,10 @@ void Test::addFrontTest()
     randomValue = rand() % 10000 + 1;
   }
   T.addFront(randomValue);
-  printMessage( randomValue,T.toVector()[0], "Value at the front of the list after using addFront with a list of size 1", "likely because add front is not maintaining the positioning of the list");
+  printMessage( randomValue,T.toVector()[0], "Test for value at the front of the list after using addFront with a list of size 1", "likely because add front is not maintaining the positioning of the list");
   cout << endl;
 
-  printMessage( previousValue,T.toVector()[1], "Value at position 1 after adding front to a list of size 1(Order Check)", "likely because add front is compromising proper order of the list");
+  printMessage( previousValue,T.toVector()[1], "Test for value at position 1 after adding front to a list of size 1(Order Check)", "likely because add front is compromising proper order of the list or adding in a backwards manner");
   cout << endl;
 
   for (int i =0; i<=10; i++)
@@ -178,10 +180,10 @@ void Test::addBackTest()
   randomValue = rand() % 10000+1;
   T.addBack(randomValue);
 
-  printMessage(randomValue, T.toVector()[T.toVector().size()-1], "Test ensuring value was correctly added to back of a list of size 1", "likely due to error in maintaining order after adding node back to list");
+  printMessage(randomValue, T.toVector()[T.toVector().size()-1], "Test ensuring value was correctly added to back of a list of size 1", "likely due to error in maintaining order after adding node back to list; possibly mix up with add front");
   cout << endl;
 
-  printMessage(previous, T.toVector()[0], "Test ensuring the ordering was not compromised after adding back to list of size 1", "likely due to order being compromised by add back method. Ordering is not maintained");
+  printMessage(previous, T.toVector()[0], "Test ensuring the ordering was not compromised after adding back to list of size 1", "likely due to order being compromised by add back method. Ordering is not maintained. This works backwards than its suppose to. ");
   cout << endl;
 }
 
@@ -210,7 +212,7 @@ void Test::searchTest()
     {
       falseyoTruey =0;
     }
-    printMessage(1, falseyoTruey, "Search Tester aftering adding a value of 10 to front of list (1 = true, 0 = false)", "likely either a broken add front method or inability to traverse and find proper node");
+    printMessage(1, falseyoTruey, "Search Test aftering adding a value of 10 to front of list (1 = true, 0 = false)", "likely either a broken add front method or inability to traverse and find proper node");
     cout << endl;
   if(!tester.search(52) )
   {
@@ -246,7 +248,7 @@ void Test::searchTest()
   cout << endl;
   printMessage(0,falseyoTruey, "Search Test after searching an empty list (1=true,0=false)", "likely due to the fact the edge case of an empty case was not accounted for");
   cout << endl;
-  PercentageGiverToFile();
+  
 
 }
 
@@ -265,7 +267,126 @@ void Test::constructorTest()
 
   delete hi;
 }
+void Test::destructorTest()
+{
+  // int trueyOFalsey =0; 
+  // LinkedListOfInts* aList = new LinkedListOfInts(); 
+  // srand (time(NULL));
+  // int randomValue = rand() % 10000 + 1; //  in the range 1 to 10000
 
+  // for (int i =0; i<=500000; i++)
+  // {
+  //   aList->addFront(randomValue); 
+  //   randomValue = rand() % 10000+1; 
+  // }
+
+
+  
+  // cout << trueyOFalsey; 
+}
+void Test::removeFrontTests()
+{
+  printMessage(11,12,"removeFront Method", "ignore");
+  int tOF =0; 
+  LinkedListOfInts aList; 
+  if(aList.removeFront())
+  {
+    tOF =1;
+  } 
+  printMessage(0,tOF, "Test for removing front to empty list (1= true, 0 = false)", "Likely because edge cause of empty list was not accounted for in method" ); 
+  cout << endl; 
+  tOF =0; 
+  aList.addFront(3);
+  if(aList.removeFront())
+  {
+    tOF =1; 
+  }
+  printMessage(1,tOF, "Test for removing front to a list of after adding front to an empty list(1= true, 0 = false)", "Likely because remove front is not deleting any items whatssoever.");
+  cout << endl; 
+  tOF = 0; 
+  LinkedListOfInts secondList; 
+  secondList.addBack(4); 
+  if(secondList.removeFront())
+  {
+    tOF = 1; 
+  }
+  printMessage(1,tOF, "Test for removing front to a list after adding back to an empty list(1=true,0=false)", "Likely because remove front is not removing first index and is compeltely broken.");
+  cout << endl; 
+
+
+  LinkedListOfInts listThree; 
+  srand (time(NULL));
+  int randomValue = rand() % 10000 + 1; //  in the range 1 to 10000
+  for (int i =0; i<10; i++)
+  {
+    listThree.addFront(randomValue); 
+    randomValue = rand() % 10000+1; 
+  }
+
+  int originalFront = listThree.toVector()[0]; 
+  int newFrontAfterRemoval = listThree.toVector()[1]; 
+
+  listThree.removeFront(); 
+
+  int newFront = listThree.toVector()[0]; 
+
+  printMessage(newFrontAfterRemoval, newFront, "Test to ensure that remove front correctly places value after front as the front value after removal", "likely because removeFront is not removing a value at all");
+  cout << endl; 
+}
+
+
+void Test::removeBackTests()
+{
+  printMessage(11,12,"removeBack Method", "ignore");
+  int tof =0; 
+  LinkedListOfInts aList; 
+  if(aList.removeBack())
+  {
+    tof = 1; 
+  
+  }
+
+  printMessage(0, tof, "Test to ensure that a value of false is being returned after removing back an empty list (1 = true, 0=false)", "likely because removeBack did not account for edge case of empty list");
+  cout << endl; 
+  tof = 0; 
+
+  aList.addFront(3); 
+  if(aList.removeBack())
+  {
+    tof =1; 
+  }
+
+  printMessage(1, tof, "Test to ensure that removeBack returns true after add front has been used to an empty list (1=true, 0 = false)", "Likely because removeBack is not removing at all"); 
+  cout << endl; 
+  tof =0; 
+  LinkedListOfInts secondList; 
+  secondList.addBack(4); 
+  if(secondList.removeBack())
+  {
+    tof =1; 
+  }
+  printMessage(1, tof, "Test to ensure that removeBack returns true after add back has been used to an empty list (1= true, 0 = false)", "Likely because no removing is being done with the removeBack method"); 
+  cout << endl; 
+  LinkedListOfInts listThree; 
+   srand (time(NULL));
+  int randomValue = rand() % 10000 + 1; //  in the range 1 to 10000
+  for (int i =0; i<10; i++)
+  {
+    listThree.addFront(randomValue); 
+    randomValue = rand() % 10000+1; 
+  }
+
+  int originalBack = listThree.toVector()[listThree.toVector().size()-1]; 
+  int newBack = listThree.toVector()[listThree.toVector().size()-2];
+
+  listThree.removeBack(); 
+
+  int BackafterRemoval = listThree.toVector()[listThree.toVector().size()-1]; 
+  printMessage(newBack, BackafterRemoval, "Test to ensure that positioning is maintained after removing back, for instance value of back is updated. Size of list -2 is now at position size of list -1 ", "likely either because removeBack is not removing or removing is done in an unadequate manner that does not maintain positioning");
+  cout << endl; 
+
+
+}
 void Test::PercentageGiver()
 {
 
@@ -282,6 +403,7 @@ void Test::PercentageGiver()
   cout << "Tests failed: " << m_totalTests - m_correctTests << endl;
   cout << "Percentage: " << percentage << "%" << endl;
 
+  PercentageGiverToFile();
 
 }
 void Test::PercentageGiverToFile()
@@ -308,6 +430,9 @@ void Test::runAllTests()
     addBackTest();
 
     searchTest();
+    removeFrontTests(); 
+    removeBackTests(); 
+    destructorTest();
     PercentageGiver();
 
 }

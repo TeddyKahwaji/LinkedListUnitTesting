@@ -27,10 +27,12 @@ void addBackTest();
 void searchTest();
 void PercentageGiverToFile();
 void constructorTest();
-
+void destructorTest(); 
+void removeBackTests(); 
+void removeFrontTests(); 
 void PercentageGiver();
 private:
-int m_totalTests = 24;
+int m_totalTests = 32;
 int m_correctTests =0;
 ofstream outFile;
 
