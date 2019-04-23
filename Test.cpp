@@ -248,7 +248,7 @@ void Test::searchTest()
   cout << endl;
   printMessage(0,falseyoTruey, "Search Test after searching an empty list (1=true,0=false)", "likely due to the fact the edge case of an empty case was not accounted for");
   cout << endl;
-  
+
 
 }
 
@@ -269,121 +269,121 @@ void Test::constructorTest()
 }
 void Test::destructorTest()
 {
-  // int trueyOFalsey =0; 
-  // LinkedListOfInts* aList = new LinkedListOfInts(); 
+  // int trueyOFalsey =0;
+  // LinkedListOfInts* aList = new LinkedListOfInts();
   // srand (time(NULL));
   // int randomValue = rand() % 10000 + 1; //  in the range 1 to 10000
 
   // for (int i =0; i<=500000; i++)
   // {
-  //   aList->addFront(randomValue); 
-  //   randomValue = rand() % 10000+1; 
+  //   aList->addFront(randomValue);
+  //   randomValue = rand() % 10000+1;
   // }
 
 
-  
-  // cout << trueyOFalsey; 
+
+  // cout << trueyOFalsey;
 }
 void Test::removeFrontTests()
 {
   printMessage(11,12,"removeFront Method", "ignore");
-  int tOF =0; 
-  LinkedListOfInts aList; 
+  int tOF =0;
+  LinkedListOfInts aList;
   if(aList.removeFront())
   {
     tOF =1;
-  } 
-  printMessage(0,tOF, "Test for removing front to empty list (1= true, 0 = false)", "Likely because edge cause of empty list was not accounted for in method" ); 
-  cout << endl; 
-  tOF =0; 
+  }
+  printMessage(0,tOF, "Test for removing front to empty list (1= true, 0 = false)", "Likely because edge cause of empty list was not accounted for in method" );
+  cout << endl;
+  tOF =0;
   aList.addFront(3);
   if(aList.removeFront())
   {
-    tOF =1; 
+    tOF =1;
   }
   printMessage(1,tOF, "Test for removing front to a list of after adding front to an empty list(1= true, 0 = false)", "Likely because remove front is not deleting any items whatssoever.");
-  cout << endl; 
-  tOF = 0; 
-  LinkedListOfInts secondList; 
-  secondList.addBack(4); 
+  cout << endl;
+  tOF = 0;
+  LinkedListOfInts secondList;
+  secondList.addBack(4);
   if(secondList.removeFront())
   {
-    tOF = 1; 
+    tOF = 1;
   }
   printMessage(1,tOF, "Test for removing front to a list after adding back to an empty list(1=true,0=false)", "Likely because remove front is not removing first index and is compeltely broken.");
-  cout << endl; 
+  cout << endl;
 
 
-  LinkedListOfInts listThree; 
+  LinkedListOfInts listThree;
   srand (time(NULL));
   int randomValue = rand() % 10000 + 1; //  in the range 1 to 10000
   for (int i =0; i<10; i++)
   {
-    listThree.addFront(randomValue); 
-    randomValue = rand() % 10000+1; 
+    listThree.addFront(randomValue);
+    randomValue = rand() % 10000+1;
   }
 
-  int originalFront = listThree.toVector()[0]; 
-  int newFrontAfterRemoval = listThree.toVector()[1]; 
+  int originalFront = listThree.toVector()[0];
+  int newFrontAfterRemoval = listThree.toVector()[1];
 
-  listThree.removeFront(); 
+  listThree.removeFront();
 
-  int newFront = listThree.toVector()[0]; 
+  int newFront = listThree.toVector()[0];
 
   printMessage(newFrontAfterRemoval, newFront, "Test to ensure that remove front correctly places value after front as the front value after removal", "likely because removeFront is not removing a value at all");
-  cout << endl; 
+  cout << endl;
 }
 
 
 void Test::removeBackTests()
 {
   printMessage(11,12,"removeBack Method", "ignore");
-  int tof =0; 
-  LinkedListOfInts aList; 
+  int tof =0;
+  LinkedListOfInts aList;
   if(aList.removeBack())
   {
-    tof = 1; 
-  
+    tof = 1;
+
   }
 
   printMessage(0, tof, "Test to ensure that a value of false is being returned after removing back an empty list (1 = true, 0=false)", "likely because removeBack did not account for edge case of empty list");
-  cout << endl; 
-  tof = 0; 
+  cout << endl;
+  tof = 0;
 
-  aList.addFront(3); 
+  aList.addFront(3);
   if(aList.removeBack())
   {
-    tof =1; 
+    tof =1;
   }
 
-  printMessage(1, tof, "Test to ensure that removeBack returns true after add front has been used to an empty list (1=true, 0 = false)", "Likely because removeBack is not removing at all"); 
-  cout << endl; 
-  tof =0; 
-  LinkedListOfInts secondList; 
-  secondList.addBack(4); 
+  printMessage(1, tof, "Test to ensure that removeBack returns true after add front has been used to an empty list (1=true, 0 = false)", "Likely because removeBack is not removing at all");
+  cout << endl;
+  tof =0;
+  LinkedListOfInts secondList;
+  secondList.addBack(4);
   if(secondList.removeBack())
   {
-    tof =1; 
+    tof =1;
   }
-  printMessage(1, tof, "Test to ensure that removeBack returns true after add back has been used to an empty list (1= true, 0 = false)", "Likely because no removing is being done with the removeBack method"); 
-  cout << endl; 
-  LinkedListOfInts listThree; 
+  printMessage(1, tof, "Test to ensure that removeBack returns true after add back has been used to an empty list (1= true, 0 = false)", "Likely because no removing is being done with the removeBack method");
+  cout << endl;
+  LinkedListOfInts listThree;
    srand (time(NULL));
   int randomValue = rand() % 10000 + 1; //  in the range 1 to 10000
   for (int i =0; i<10; i++)
   {
-    listThree.addFront(randomValue); 
-    randomValue = rand() % 10000+1; 
+    listThree.addFront(randomValue);
+    randomValue = rand() % 10000+1;
   }
 
-  int originalBack = listThree.toVector()[listThree.toVector().size()-1]; 
+  int originalBack = listThree.toVector()[listThree.toVector().size()-1];
   int newBack = listThree.toVector()[listThree.toVector().size()-2];
 
-  listThree.removeBack(); 
+  listThree.removeBack();
 
-  int BackafterRemoval = listThree.toVector()[listThree.toVector().size()-1]; 
-  printMessage(newBack, BackafterRemoval, "Test to ensure that positioning is maintained after removing back, for instance value of back is updated. Size of list -2 is now at position size of list -1 ", "likely either because removeBack is not removing or removing is done in an unadequate manner that does not maintain positioning");
-  cout << endl; 
+  int BackafterRemoval = listThree.toVector()[listThree.toVector().size()-1];
+  printMessage(newBack, BackafterRemoval, "Test to ensure that order is maintained after remove back. For example, the value at position length -2 will become the value at position length - 1 after removeBack executes ", "likely either because removeBack is not removing or removing is done in an unadequate manner that does not maintain positioning");
+  cout << endl;
 
 
 }
@@ -430,8 +430,8 @@ void Test::runAllTests()
     addBackTest();
 
     searchTest();
-    removeFrontTests(); 
-    removeBackTests(); 
+    removeFrontTests();
+    removeBackTests();
     destructorTest();
     PercentageGiver();
 
