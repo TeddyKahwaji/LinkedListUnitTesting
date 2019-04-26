@@ -55,7 +55,7 @@ void Test::isEmptyTest()
     {
       falseyoTruey = 1;
     }
-    printMessage(1, falseyoTruey, "isEmptyTest for an empty list", "likely due to not accounting for edge case of an empty list or a nonfunctional constructor" );
+    printMessage(1, falseyoTruey, "isEmptyTest for an empty list (1 = True, 0 = False)", "likely due to not accounting for edge case of an empty list or a nonfunctional constructor" );
     cout << endl;
     falseyoTruey =0;
     myList.addFront(4);
@@ -67,7 +67,7 @@ void Test::isEmptyTest()
 
     }
 
-    printMessage(1, falseyoTruey, "isEmptyTest after adding front and removing front", "likely due to not removing front properly");
+    printMessage(1, falseyoTruey, "isEmptyTest after adding front and removing front (1 = True, 0 = False)", "likely due to not removing front properly");
     cout << endl;
 
 
@@ -84,7 +84,7 @@ void Test::isEmptyTest()
     }
 
 
-    printMessage(1, falseyoTruey, "isEmptyTest after adding back and immediately removing back", "Likely due to inability to remove back properly note that that isEmpty correctly returns true however when checking the vectors size it is still 1.This implies your removeBack is broken");
+    printMessage(1, falseyoTruey, "isEmptyTest after adding back and immediately removing back ( 1 = True, 0 = False)", "Likely due to inability to remove back properly note that that isEmpty correctly returns true however when checking the vectors size it is still 1.This implies your removeBack is broken");
     cout << endl;
 
 
@@ -94,31 +94,38 @@ void Test::sizeTest()
 {
   printMessage(11,12,"size Method", "ignore");
   LinkedListOfInts aList;
+
+    //Testing to see that the size of an empty list is 0
   printMessage(aList.toVector().size(),aList.size(), "Size after calling default constructor(emptyList)", "Likely due to not setting size to 0 in constructor definition");
   cout << endl;
   aList.addFront(3);
-
+//Size after adding front should be 1
     printMessage(aList.toVector().size(),aList.size(), "Size after adding front to an empty list", "Likely due to a nonfunctional add front method");
     cout << endl;
 
 
 
   aList.addFront(3);
+  //The size after adding twice to list should increment up to 2
   printMessage(aList.toVector().size(), aList.size(),"Size after adding front to a list of size 1", "Likely due to a nonfunctional add front method");
   cout << endl;
   aList.removeFront();
+  //List size should decrement after deleting. 
   printMessage(aList.toVector().size(),aList.size(),"Size after removing Front from a list of size 2", "Likely due to a broken remove front method");
   cout << endl;
 
   LinkedListOfInts secondList;
   secondList.addBack(4);
+  //Adding back functionality should account for incrementing size. 
   printMessage( secondList.toVector().size(),secondList.size(),"Size after adding back to an empty list", "Likely due to a broken add back method");
   cout << endl;
   secondList.addBack(5);
+  //Size should increment multiple times. 
   printMessage(secondList.toVector().size(),secondList.size(), "Size after adding back twice", "Likely due to broken add back method");
   cout << endl;
 
   secondList.removeBack();
+  //Size should be decremented by a value of 1. 
   printMessage( secondList.toVector().size(),secondList.size(),"Size after removing Back from a list of size 2" , "likely because remove back method is not functional");
   cout << endl;
 
@@ -137,9 +144,10 @@ void Test::addFrontTest()
   {
     randomValue = rand() % 10000 + 1;
   }
-
+  
   T.addFront(randomValue);
   int previousValue = randomValue;
+  //ensures the value at the front is correct.  
   printMessage( randomValue,T.toVector()[0], "Test for the value at the front of the list after using add Front with Empty List", "likely because add front is not maintaining the positioning of list");
   cout << endl;
   //randomize again
@@ -269,20 +277,9 @@ void Test::constructorTest()
 }
 void Test::destructorTest()
 {
-  // int trueyOFalsey =0;
-  // LinkedListOfInts* aList = new LinkedListOfInts();
-  // srand (time(NULL));
-  // int randomValue = rand() % 10000 + 1; //  in the range 1 to 10000
-
-  // for (int i =0; i<=500000; i++)
-  // {
-  //   aList->addFront(randomValue);
-  //   randomValue = rand() % 10000+1;
-  // }
-
-
-
-  // cout << trueyOFalsey;
+  outFile << "Destructor is not functional " << endl; 
+  outFile << "Note: Each node is not being deleted as a result this can be determinetal to linked lists of large sizes!" << endl; 
+  outFile << endl; 
 }
 void Test::removeFrontTests()
 {
@@ -301,7 +298,7 @@ void Test::removeFrontTests()
   {
     tOF =1;
   }
-  printMessage(1,tOF, "Test for removing front to a list of after adding front to an empty list(1= true, 0 = false)", "Likely because remove front is not deleting any items whatssoever.");
+  printMessage(1,tOF, "Test for removing front to a list of size 1 after adding front to an empty list(1= true, 0 = false)", "Likely because remove front is not deleting any items whatssoever.");
   cout << endl;
   tOF = 0;
   LinkedListOfInts secondList;
@@ -423,7 +420,10 @@ void Test::PercentageGiverToFile()
 }
 void Test::runAllTests()
 {
+
+
     constructorTest();
+    destructorTest();
     isEmptyTest();
     sizeTest();
     addFrontTest();
@@ -432,7 +432,7 @@ void Test::runAllTests()
     searchTest();
     removeFrontTests();
     removeBackTests();
-    destructorTest();
+    
     PercentageGiver();
 
 }
